@@ -10,13 +10,13 @@ type Response* = object
   status*: Status
   message*:  string
 
-method active*(this: Response): bool {.base} =
+method active*(this: Response): bool {.base.} =
   this.status == ACTIVE
-method disposable*(this: Response): bool {.base} =
+method disposable*(this: Response): bool {.base.} =
   this.status == DISPOSABLE
-method robot*(this: Response): bool {.base} =
+method robot*(this: Response): bool {.base.} =
   this.status == ROBOT
-method invalid*(this: Response): bool {.base} =
+method invalid*(this: Response): bool {.base.} =
   this.status == INVALID
 
 type MailTester = object
