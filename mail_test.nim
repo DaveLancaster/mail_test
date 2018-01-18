@@ -1,6 +1,10 @@
 import httpclient, json, ospaths
 
 type 
+  Domain = string
+
+  QueryString = string
+
   Status* = enum
     ACTIVE, DISPOSABLE, ROBOT, INVALID, UNKNOWN, ERROR
 
@@ -28,10 +32,10 @@ method
     this.status == INVALID
 
 method 
-  url(this: MailTester, domain: string): string {.base.} =
+  url(this: MailTester, domain: Domain): QueryString {.base.} =
     this.host & "/" & this.version & "/" & domain
 method 
-  check(this: MailTester, domain: string): Response {.base.} =
+  check(this: MailTester, domain: Domain): Response {.base.} =
     this.client
       .getContent(this.url(domain))
       .parseJson()
@@ -52,5 +56,5 @@ proc
       client: newHttpClient())
 
 proc
-  check*(domain: string): Response =
+  check*(domain: Domain): Response =
     newMailTester().check(domain)
