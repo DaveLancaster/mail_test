@@ -1,6 +1,4 @@
-import httpclient
-import json
-import ospaths
+import httpclient, json, ospaths
 
 type 
   Status* = enum
