@@ -18,24 +18,28 @@ type
     version: string
     client: HttpClient
 
-method 
-  active*(this: Response): bool {.base.} =
+proc 
+  active*(this: Response): bool =
     this.status == ACTIVE
-method 
-  disposable*(this: Response): bool {.base.} =
+
+proc 
+  disposable*(this: Response): bool =
     this.status == DISPOSABLE
-method 
-  robot*(this: Response): bool {.base.} =
+
+proc 
+  robot*(this: Response): bool =
     this.status == ROBOT
-method 
-  invalid*(this: Response): bool {.base.} =
+
+proc 
+  invalid*(this: Response): bool =
     this.status == INVALID
 
-method 
-  url(this: MailTester, domain: Domain): QueryString {.base.} =
+proc
+  url(this: MailTester, domain: Domain): QueryString =
     this.host & "/" & this.version & "/" & domain
-method 
-  check(this: MailTester, domain: Domain): Response {.base.} =
+
+proc
+  check(this: MailTester, domain: Domain): Response =
     this.client
       .getContent(this.url(domain))
       .parseJson()
