@@ -8,7 +8,7 @@ type
   Status* = enum
     ACTIVE, DISPOSABLE, ROBOT, INVALID, UNKNOWN, ERROR
 
-  Response* = object
+  Response* = ref object
     code*: string
     status*: Status
     message*:  string
